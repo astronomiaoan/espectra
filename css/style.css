@@ -66,7 +66,7 @@
 /* SECTION NO 1 */
 
 .section-1 {
-    background-color: #F2F2F2;
+    background-color: #425159;
     height: 450px;
     padding: 0px;
 }
@@ -76,8 +76,8 @@
 }
 
 .image-frame {
-    width: 380px;
-    height: 380px;
+    width: 280px;
+    height: 280px;
     background-image: url(../images/logo-oan.png);
     background-position: center;
     background-size: cover;
