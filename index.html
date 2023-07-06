@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Revista de Investigación en Astrofísica del Observatorio Astronómico Nacional de Colombia</title>
+    <title>Revista de Investigación</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -29,7 +29,30 @@
             max-width: 400px;
             margin-bottom: 20px;
         }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active {
+            display: block;
+        }
     </style>
+    <script>
+        function openTab(event, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            event.currentTarget.className += " active";
+        }
+    </script>
 </head>
 <body>
     <h1>Revista de Investigación</h1>
@@ -37,24 +60,23 @@
     <img src="espectra-image.png" alt="Portada de la revista" class="cover-image">
 
     <h2>Artículos</h2>
-    <ul>
-        <li><a href="articulo1.html">Artículo 1</a></li>
-        <li><a href="articulo2.html">Artículo 2</a></li>
-        <li><a href="articulo3.html">Artículo 3</a></li>
-    </ul>
+    <div>
+        <button class="tablink" onclick="openTab(event, 'articulo1')">Artículo 1</button>
+        <button class="tablink" onclick="openTab(event, 'articulo2')">Artículo 2</button>
+        <button class="tablink" onclick="openTab(event, 'articulo3')">Artículo 3</button>
+    </div>
 
-    <h2>Índice de Trabajos</h2>
-    <ul>
-        <li><a href="indice1.html">Trabajo 1</a></li>
-        <li><a href="indice2.html">Trabajo 2</a></li>
-        <li><a href="indice3.html">Trabajo 3</a></li>
-    </ul>
+    <div id="articulo1" class="tab">
+        <h3>Artículo 1</h3>
+        <!-- Contenido del artículo 1 -->
+    </div>
 
-    <h2>Comité Editorial</h2>
-    <ul>
-        <li>Nombre 1 - Puesto</li>
-        <li>Nombre 2 - Puesto</li>
-        <li>Nombre 3 - Puesto</li>
-    </ul>
-</body>
-</html>
+    <div id="articulo2" class="tab">
+        <h3>Artículo 2</h3>
+        <!-- Contenido del artículo 2 -->
+    </div>
+
+    <div id="articulo3" class="tab">
+        <h3>Artículo 3</h3>
+        <!-- Contenido del artículo 3 -->
+   
