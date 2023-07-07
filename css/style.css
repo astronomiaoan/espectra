@@ -84,7 +84,7 @@
     border: 8px solid #FFFFFF;
     border-radius: 50%;
     position: absolute;
-    top: 110px;
+    top: 90px;
     left: 50%;
     transform: translateX(-50%);
 }
