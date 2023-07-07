@@ -76,9 +76,9 @@
 }
 
 .image-frame {
-    width: 280px;
-    height: 280px;
-    background-image: url(../images/logo-oan.png);
+    width: 380px;
+    height: 380px;
+    background-image: url(../images/imagen-logo-espectra.png);
     background-position: center;
     background-size: cover;
     border: 8px solid #FFFFFF;
