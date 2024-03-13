@@ -1,0 +1,483 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Please note that whilst this template provides a 
+% preview of the typeset manuscript for submission, it 
+% will not necessarily be the final publication layout.
+%
+% letterpaper/a4paper: US/UK paper size toggle
+% num-refs/alpha-refs: numeric/author-year citation and bibliography toggle
+
+%\documentclass[letterpaper]{aejstyles}
+\documentclass[a4paper,alpha-refs]{eSpectra}
+
+%%% Journal toggle; only specific options recognised.
+\journal{aej}
+
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[spanish, english]{babel}  
+%\usepackage[spanish]{babel}  
+% Spanish for default (Abstract. References, Appendix, tables, and figures names).
+\usepackage{array}
+\usepackage{tabularray}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{comment}
+
+\setcounter{page}{52}
+
+\usepackage{academicons}
+\usepackage{aas-macros}
+\usepackage{doi}
+\renewcommand{\doitext}{}
+\usepackage{fontawesome5}
+\definecolor{orcidlogocol}{rgb}{0.65, 0.807, 0.223}
+\newcommand{\orcid}[1]{$\,$\href{https://orcid.org/#1}{\textcolor{orcidlogocol}{\faOrcid}}}
+
+ 
+%\usepackage[left]{lineno}
+%\linenumbers
+
+%%% Flushend: You can add this package to automatically balance the final page, but if things go awry (e.g. section contents appearing out-of-order or entire blocks or paragraphs are coloured), remove it!
+% \usepackage{flushend}
+
+\title{Comparative Image Alignment for Multiple Telescopes: ALMA, IRIS, SDO
+\\\vspace{3.5 mm}
+\fontsize{12pt}{8pt} \selectfont\textcolor{jcolour!70}{ Alineación comparativa de imágenes para varios telescopios: ALMA, IRIS, SDO}}
+
+
+
+%%% Use the \authfn to add symbols for additional footnotes, if any. 1 is reserved for correspondence emails; then continuing with 2 etc for contributions.
+\author[\orcid{0000-0002-7329-4877} 1,\authfn{1}]{Francisco J. Ordoñez Araujo}
+\author[\orcid{0000-0001-6854-2779} 2,3,\authfn{1}]{Juan Camilo Guevara Gómez}
+\author[\orcid{0000-0002-5041-1743} 1,\authfn{1}]{Benjamín Calvo Mozo}
+
+\affil[1]{Observatorio Astronómico Nacional, Universidad Nacional de Colombia, Bogotá D.C., Colombia}
+\affil[2]{Group Research \& Development DNV AS, Høvik, Norway}
+\affil[3]{Rosseland Centre for Solar Physics, University of Oslo, Postboks 1029 Blindern, 0315 Oslo, Norway}
+
+%%% Author Notes
+\authnote{\authfn{1} E-mail: \href{mailto:fjordoneza@unal.edu.co}{fjordoneza@unal.edu.co} (FJOA); \href{mailto:juan.camilo.guevara.gomez@dnv.com}{juan.camilo.guevara.gomez@dnv.com} (JCGG); \href{mailto:bcalvom@unal.edu.co}{bcalvom@unal.edu.co} (BCM)}
+%\authnote{\authfn{1} Master of Science - Astronomy Student: href{mailto:fjordoneza@unal.edu.co}{fjordoneza@unal.edu.co}}
+%\authnote{\authfn{2}Researcher: \href{mailto:juan.camilo.guevara.gomez@dnv.com}}
+%\authnote{\authfn{3}Associate Professor:  \href{mailto:bcalvom@unal.edu.co}{bcalvom@unal.edu.co}}
+
+
+%%% Paper category: Other categories include: Research Article, Review, News, Announcements, Interviews, Opinion, Resources & Activities, Book Review, Correspondences, Best practice,
+\papercat{Scientific Article}
+
+%%% "Short" author for running page header
+\runningauthor{F. J. Ordoñez-Araujo et al.}
+
+%%% Should only be set by an editor
+\jvolume{2}
+\jnumber{1}
+\jyear{2024}
+\begin{document}
+\begin{frontmatter}
+\maketitle
+
+
+
+
+
+
+\selectlanguage{english}
+\begin{abstract}
+\justifying
+This paper introduces a method for aligning solar observations from different telescopes. We utilized helioprojective coordinates from the Solar Dynamics Observatory (SDO) as a reference to align images from ALMA and IRIS. The alignment is based on correlation analysis, employing both the Pearson Correlation Coefficient (PCC) and the Structural Similarity Index (SSIM) for assessing data correlations. PCC was preferred for its effectiveness with diverse datasets and its computational efficiency compared to SSIM. The alignment demonstrated less than 1 arcsec variation in average centers between the two methods, ensuring consistent results. We illustrate this method using ALMA observations, labeled D06 in the Solar ALMA Science Archive (SALSA), as a case study.
+
+%The helioprojective coordinates $T_x$ and $T_y$ obtained with the proposed method, presented a discrepancy of $4.5\%$ and $0.8\%$, respectively, compared to the literature, validating the precision of the method.
+
+%The helioprojective coordinates $T_x$ and $T_y$ were found with a discrepancy of $4.5\%$ and $0.8\%$, respectively, compared to the literature, validating the precision of the method.
+\end{abstract}
+
+
+
+\qquad\quad\textbf{Keywords:} Solar Image Alignment -- Sun: atmosphere -- Helioprojective Coordinates -- PCC -- SSIM.
+
+
+
+\selectlanguage{spanish} 
+\begin{abstract}
+\justifying
+Este trabajo introduce un método para alinear observaciones solares provenientes de telescopios distintos. Utilizamos las coordenadas helioproyectivas del Observatorio de Dinámica Solar (SDO) como referencia para alinear las imágenes de ALMA e IRIS. El proceso de alineación se basa en un análisis de correlación, utilizando tanto el Coeficiente de Correlación de Pearson (PCC) como el Índice de Similitud Estructural (SSIM) para estimar las correlaciones entre los conjuntos de datos. Se seleccionó el PCC como el método preferido debido a su fiabilidad en casos de conjuntos de datos muy diferentes y sus ventajas computacionales significativas en comparación con el SSIM. Los resultados de la alineación demuestran una variación de menos de 1 segundo de arco entre los centros promedio obtenidos por ambos métodos, asegurando la consistencia en los resultados finales. Como caso ilustrativo, hemos utilizado observaciones de ALMA identificadas como D06 en el Solar ALMA Science Archive (SALSA) para explicar y mostrar el método.
+
+%En la región D06 de ALMA, se encontraron coordenadas helioproyectivas $T_x$ y $T_y$ con una discrepancia del $4.5\%$ y $0.8\%$, respectivamente, en comparación con la literatura, validando la precisión del método.
+
+
+
+\end{abstract}
+\begin{skeywords}
+Alineación de Imágenes Solares -- Sol: atmósfera -- Coordenadas Helioproyectivas -- PCC -- SSIM.
+\end{skeywords}
+
+
+\end{frontmatter}
+\selectlanguage{english}
+
+\section{Introduction}
+
+The study of the solar atmosphere has garnered significant importance due to a variety of factors. These encompass fundamental inquiries, the best known being the elucidation of the origins of the remarkably high temperatures observed in the solar corona, commonly referred to as the ``coronal heating problem''. Additionally, it encompasses the examination of space weather and the impact of solar atmospheric phenomena, such as solar flares and coronal mass ejections, on terrestrial weather conditions.
+
+In the pursuit of understanding the solar atmosphere, spectroscopy has played a pivotal role by enabling the analysis of its composition and properties. Semi-empirical models, exemplified by the work of \cite{vernazza_structure_1981}, have offered initial insights into the distinctive emission lines characterizing each atmospheric layer. For instance, the photosphere is recognized for its prominent H-alpha emission, the chromosphere for its strong radio emissions, and the transition region and corona exhibit intense ultraviolet emissions.
+
+This knowledge of characteristic emissions from various solar atmospheric layers has driven the development of specialized instruments, including the  Interface Region Imaging Spectrograph (IRIS; \cite{depontieu_interface_2014_IRIS}), the Solar Dynamics Observatory (SDO; \cite{SDO_pesnell}), and the Atacama Large Millimeter/submillimeter Array (ALMA; \cite{wootten_atacama_2009}). These instruments are tailored to observe precise wavelengths corresponding to emissions coming from distinct layers, significantly enhancing our ability to investigate the underlying physical phenomena across the solar atmosphere.
+
+
+However, studying the solar atmosphere requires observing its ever-changing physical conditions. To compare different atmospheric layers and understand diverse physical phenomena, data processing becomes essential. Research articles often provide limited information on data pre-processing, as they focus more on the specific research goals of the authors. Hence, in this paper, we introduce a pre-processing method that is crucial for analyzing data captured by IRIS, SDO, and ALMA in the study of the solar atmosphere’s dynamics. We particularly emphasize an alignment technique that enables the synchronization of images captured by these telescopes, ensuring more accurate comparative analysis
+
+%However, studying the solar atmosphere involves observing its continuous changes in physical conditions. To compare different regions (layers) and understand various physical phenomena, data processing is crucial. Research articles frequently offer limited details regarding data pre-processing, since they typically prioritize discussing the authors' specific research goals. Therefore, in this paper, we present a pre-processing approach essential for analyzing data captured by IRIS, SDO, and ALMA when investigating the dynamics of the solar atmosphere. In this context, we introduce an alignment method facilitating the synchronization of images captured by the mentioned telescopes. Consequently, this paper describes a preprocessing approach crucial for analyzing data collected by IRIS, SDO, and ALMA when studying the dynamics of the solar atmosphere, with a particular emphasis on the alignment process of images obtained by these telescopes.
+
+
+%Consequently, this paper introduces a preprocessing method for analyzing IRIS, SDO, and ALMA data in studying the solar atmosphere's dynamics. Specifically, we present an alignment technique to spatially and temporally synchronize images from these telescopes, enabling better analysis of the collected data.
+
+%Therefore, in this paper, we present a preprocessing approach essential for analyzing data captured by IRIS, SDO, and ALMA when investigating the dynamics of the solar atmosphere. In this context, we introduce an alignment method facilitating the synchronization of images captured by the mentioned telescopes. Consequently, this paper describes a preprocessing approach crucial for analyzing data collected by IRIS, SDO, and ALMA when studying the dynamics of the solar atmosphere, with a particular emphasis on the alignment process of images obtained by these telescopes.
+
+\begin{comment}
+    
+\begin{figure*}[htb]
+   \centering
+%\includegraphics[width=\textwidth]{images/IRIS_ALINEACION.png}
+        \includegraphics[scale=0.22]{images/IRIS_ALINEACION.png}
+
+    \caption{Result of the alignment between ALMA Band 3 and IRIS for region D06 of the \href{http://sdc.uio.no/salsa/}{SALSA} database, corresponding to the observation of April 12, 2018 at 12:15 UTC. The blue circle represents the ALMA FoV centered at the position of maximum correlation. The regions of the chromosphere with a brightness temperature of 7000 and 7500\,K in the ALMA images are delimited by black and yellow contours.}
+    \label{chap_2:figure_result_IRIS_and_SDO_align}
+\end{figure*}
+\end{comment}
+
+%------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+
+
+\section{Method}
+\subsection{Observational data}
+
+In this study, we utilized observational data from various telescopes including the Helioseismic and Magnetic Image (HMI; \cite{scherrer_helioseismic_2012}), the Atmospheric Imaging Assembly (AIA; \cite{lemen_atmospheric_2012}) on the SDO, IRIS, and ALMA in Band 3. Specifically, we analyzed brightness temperature data for observation D06 (project ID: 2017.1.00653.S), sourced from the Solar ALMA Science Archive  (SALSA; \cite{SALSA_guia}). This region, located in the Southern Hemisphere, was observed from April 12, 2018, from 15:52:28 to 16:24:41 UTC. The observation targeted helioprojective coordinates ($T_x$=-128, $T_y$=-400), as reported by the \href{http://sdc.uio.no/salsa/}{SALSA} database.
+%The data observations used in this work were carried out by the Helioseismic and Magnetic Image (HMI; \cite{scherrer_helioseismic_2012}), The Atmospheric Imaging Assembly (AIA; \cite{lemen_atmospheric_2012}) on aboard of SDO,  IRIS,  and  ALMA in Band 3.
+%The temperature of brightness and magnetic field data from region D06 (project ID: 2017.1.00653.S) of the Solar ALMA Science Archive (SALSA) \cite{SALSA_guia} database were analyzed. This region is located in the southern hemisphere and was studied from April 12, 2018, at 15:52:28 to April 12, 2018, at 16:24:41. The observation was centered at helioprojective coordinates -128, -400, as reported by the SALSA database.
+
+The observation time for the D06 region totaled 32\,min, split into three consecutive scans of 9.9, 10, and 7.0\,min, interspersed with 2.5 minute gaps. The FoV of the observation correspond to a circle with radius 37.95\,arcsec. The images are characterized by a pixel size of 0.3\,arcsec. The ALMA synthesized beam which represents the spatial resolution varies over time, with average values of 1.77\,arcsec for the minor axis and 2.55\,arcsec for the major axis. Furthermore, the  beam displays an average inclination of 77.5 degrees with respect to solar north. The cadence of the ALMA observation corresponds to 1.0 second, resulting in a total of 1608 images distributed across the three scans. The ALMA images exhibit an angle of inclination of 26 degrees counterclockwise with respect to solar north. Additionally,  the heliocentric angle ($\mu = \cos{\theta}$)  of the region is 0.90 with an average brightness temperature of $7689 \pm 661$\,K.  
+
+The IRIS observation utilized in this study spanned 9.6\,hours, starting on April 12, 2018, at 13:09 and concluding at 22:50. The reference helioprojective coordinates at the initiation of IRIS observation were $T_x, T_y = -118.181, -388.526$. During this period, IRIS conducted observations concurrently with ALMA in the D06 and D26 datasets in Band 3, and D27 and D09 datasets in Band 6, as part of project 2017.1.00653.S, (refer to the SALSA database for details).  The FoV of the IRIS observation is 128.5\,arcsec$\times$122.0\,arcsec. The images are characterized by a pixel size of 0.1663\,arcsec. The orientation of IRIS images aligns with solar north. Throughout the observation period, IRIS collected a total of 980 images at a cadence of 36.696 seconds. In the far-ultraviolet channel (1332-1358\,Å and 1390-1406\,Å), IRIS achieved a spectral resolution of 40\,mÅ, while in the near-ultraviolet channel (2785-2835\,Å), it achieved a spectral resolution of 80\,mÅ. The effective spatial resolution of IRIS during the observation ranged between 0.33 and 0.4\,arcsec.
+
+
+HMI offers magnetograms by observing the iron line Fe I (6173\,Å) at photospheric altitudes across the solar disk. During the observation window of interest, HMI acquired a set of 43 images at a capture cadence of 45 seconds per frame with a pixel size of 0.4\,arcsec. Additionally, images of the mid-to-high photosphere and high chromosphere regions were obtained through the AIA/1600\,Å, AIA/1700\,Å, and AIA/304\,Å channels, featuring a pixel size of 0.6 arcsec and capture cadences of 24 seconds for AIA/1600\,Å and AIA/1700\,Å, and 12 seconds for AIA/304\,Å. It is noteworthy that both HMI and AIA images exhibit a 180 degrees inclination with respect to the solar north.
+
+
+
+
+
+
+%------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+
+
+\subsection{Alignment process} \label{chap_2:seccion_2.3}
+
+%In solar physics, image alignment refers to the process of correcting deviations in the helioprojective coordinates registered by an instrument using another instrument with a more reliable calibration as a reference. Deviations in the helioprojective coordinates can be due to multiple factors. In the case of ALMA, being on the ground, they can be due to atmospheric turbulence and even instrumental error.
+
+In this work, the co-alignment of images from SDO, IRIS, and ALMA telescopes was achieved by analyzing their similarity. The Pearson correlation coefficient (PCC) was used to study the linear correlation between the images \cite{yeager_libguides_nodate}, while the Structural Similarity Index (SSIM) was used for a more detailed analysis \cite{wang_image_2004_SSIM}. 
+
+The PCC statistic ranges from -1 to +1. A value of -1 indicates a perfect linear anti-correlation between the variables, meaning that as one variable increases, the other decreases. A value of +1 indicates a perfect linear correlation between the variables, signifying that as one variable increases, the other also increases. A value of 0 suggests no linear correlation between the variables.
+
+The SSIM metric estimates for an image pair fall within the range of values between -1 and +1. A value of -1 signifies that the compared images are entirely dissimilar, while a value of +1 indicates that the images are either identical or highly similar. It's worth noting that in some libraries, like the one used in this work (\href{https://scikit-image.org/docs/stable/auto_examples/transform/plot_ssim.html}{Scikit-image}), the SSIM metric is adjusted to a range between 0 and +1 for convenience.
+
+%The alignment process was divided into three parts:  data acquisition, data preparation, alignment of ALMA images with IRIS, and alignment of IRIS with SDO. 
+
+The alignment process was divided into three distinct stages. In the first stage,  as detailed in Section \ref{data_preparation}, data was downloaded, and images were rotated to ensure their alignment with the solar north. 
+The second step, described in Section \ref{alma-IRIS_correlation_process}, focused on identifying the pixel with the maximum correlation between IRIS and ALMA within the IRIS data. The third and final stage, outlined in Section \ref{Alignment_of_IRIS_images_with_SDO}, was dedicated to the precise alignment of IRIS and SDO images to determine the helioprojective coordinates of the pixel exhibiting the maximum correlation between ALMA and IRIS, as estimated in the second step of the alignment process.
+
+
+%The alignment process was divided into three distinct stages. In the first stage, as detailed in Section \ref{data_preparation}, data was downloaded, and images were rotated to ensure their alignment with the solar north. The second step, described in Section \ref{alma-IRIS_correlation_process}, focused on identifying the pixel with the maximum correlation between IRIS and ALMA within the IRIS data. The third and final stage, outlined in Section \ref{Alignment_of_IRIS_images_with_SDO}, was dedicated to the precise alignment of IRIS and SDO images to determine the helioprojective coordinates of the pixel exhibiting the maximum correlation between ALMA and IRIS, as estimated in the second step of the alignment process.
+
+%------------------------------------------------------------
+%-------------------------------------------------------------
+%-------------------------------------------------------------
+
+\subsection{Data acquisition and  preparation}
+\label{data_preparation}
+
+The alignment method presented in this work begins with the precise download and selection of data. Aligning images captured by different telescopes is only possible when they observe the same solar region during a shared observation time window. The SALSA database stores information about regions of the solar chromosphere observed by ALMA in bands 3 and 6, allowing us to identify regions that have been co-observed with IRIS and SDO.
+
+In this study, we have chosen the dataset D06 from SALSA, which is a quiet sun region that has been co-observed by the aforementioned telescopes. The data corresponding to the co-observation of IRIS with ALMA in region D06 were downloaded from the \href{https://iris.lmsal.com/search/}{IRIS database}. 
+
+The SDO data were acquired using the \textit{Sunpy} library and the \href{http://jsoc.stanford.edu/}{Joint Science Operations Center (JSOC)} database.  
+The SDO data were downloaded and cropped by tracking the helioprojective coordinates corresponding to the initial time provided in the SALSA database for D06, with $T_x$ and $T_y$ values of -128 and -400, respectively. This option was enabled in the JSOC database download settings. The cropping was performed such that the resulting SDO images had a radius 1.8 times larger than the FoV radius of the ALMA data.
+
+%The SDO data were downloaded and cropped while accounting for the tracking of the ALMA reference pixel's coordinate center, taking into consideration the Sun's differential rotation.  This option was enabled in the JSOC database download settings. The cropping was performed in a way that resulted in the new SDO images being 1.8 times larger than the ALMA field of view (FoV).
+    
+%The SDO and ALMA images were rotated using the \textit{SAT\_ROT} and \textit{SOLAR\_P} values found in the header so that the north of the images coincided with the north of the Sun. The IRIS images do not need to be rotated because their north coincides with solar north.
+
+
+The SDO and ALMA images were rotated using the \textit{CROTA2} \cite[See Table 1,][]{brown_working_nodate}
+and \textit{SOLAR\_P} \cite[See Table A.2,][]{SALSA_guia}
+values found in the header, applying corrections of 180 degrees and 26 degrees, respectively, to ensure that the north of the images aligned with the solar north. 
+In contrast, the IRIS images did not require rotation, as their orientation already matched the solar north. After these adjustments, all images were oriented to the solar north, ensuring consistent alignment throughout the dataset.
+
+The data used in the co-alignment correspond to  IRIS telescope at wavelengths Mg II wing 2832\,Å, Mg II h/k 2796\,Å, C II 1330\,Å, and Si IV 1400\,Å, SDO/AIA at wavelengths 304\,Å, 1600\,Å, 1700\,Å,  and  SDO/HMI. In the IRIS data cube, frames corresponding to the observation window of region D06 were selected.
+
+
+
+\subsection{Pixel-Level correlation localization between ALMA and IRIS}
+\label{alma-IRIS_correlation_process}
+
+To estimate the pixel of maximum correlation between the IRIS and ALMA images, a detailed process was followed. Initially, the IRIS images were re-scaled. This re-scaling used the ratio between the pixel sizes of IRIS and ALMA as a factor, ensuring that observations from both telescopes had the same pixel size (0.1663/0.3), resulting in a uniform pixel size of 0.3\,arcsec for both sets of images. During this process, the pixel dimensions of the data, originally spanning a FoV of 128.5\,arcsec$\times$122.0\,arcsec, were altered. The dimensions shifted from an original size of 774$\times$735\,pixel to a resized dimension of 429$\times$408\,pixel, reflecting the scaling adjustments necessary to achieve uniformity across both telescopic observations.
+
+In the next phase, the IRIS frames that were co-observed alongside ALMA were specifically selected for alignment. Both sets of images then underwent an averaging and interpolation process to standardize their intensity scales. This step was crucial to ensure consistency between the IRIS and ALMA data, with the intensity scale ranging from 0 to +1. This phase involved creating two synchronized images, representing concurrent observations from IRIS and ALMA. These images were prepared for correlation analysis in the subsequent step to facilitate alignment, an essential preparatory phase for the upcoming stages of the process.
+
+To analyze the relationship between the IRIS and ALMA images, we conducted a detailed correlation analysis. This involved a unique mapping process, given the difference in the field of view (FoV) sizes of the two images. Specifically, the smaller ALMA image was initially aligned with one corner of the larger IRIS image. From there, we employed a moving window approach, systematically shifting the ALMA image pixel-by-pixel across the entire area of the IRIS image.  At each new position, the center pixel of the ALMA image corresponded to a specific location on the IRIS image. For every such alignment, we calculated the Pearson Correlation Coefficient (PCC) and Structural Similarity Index (SSIM), associating these values with the IRIS image location corresponding to the ALMA image's central pixel. This comprehensive scanning process effectively created a matrix of PCC and SSIM values that matched the dimensions of the IRIS image, reflecting the correlation metrics at every possible alignment of the two images within the IRIS FoV.
+
+Following the comprehensive scanning and correlation analysis, our next objective was to pinpoint the precise coordinates in the averaged and interpolated IRIS matrix where the highest correlation with the ALMA images occurred. These specific coordinates indicate the optimal alignment position for each IRIS filter image with the ALMA image.
+
+We replicated this procedure for every IRIS filter. To refine our results, we averaged the coordinates identified across all filters as the points of maximum correlation. This averaged coordinate location was then regarded as the definitive alignment point within the IRIS array for the images from both IRIS and ALMA telescopes.
+
+The final stage in our alignment process was crucial: determining the helioprojective coordinates of the pixel exhibiting the peak correlation value. Successfully identifying these coordinates was imperative for achieving an accurate and meaningful alignment, thereby ensuring a precise correlation between the images captured by the two telescopes
+%Following this, a correlation analysis was conducted between the IRIS and ALMA images obtained previously. The IRIS image was mapped with the ALMA image. Given the wider FoV of the IRIS image compared to that of ALMA, the mapping process involved sequentially overlaying the ALMA image onto the IRIS image. This overlay ensured that the ALMA image remained completely contained within the IRIS FoV at all times. The process resembled a comprehensive scan, with the ALMA image systematically shifted across the entire extent of the IRIS image. During each scan, the PCC and SSIM between the images were estimated and stored in a matrix matching the dimensions of the IRIS matrix.
+
+%The next step involved determining the position in coordinates of pixels in the averaged and interpolated IRIS matrix where the maximum correlation with the ALMA images was found. This position corresponds to the pixel where both images are aligned for a given IRIS filter.
+
+%This process was repeated for each IRIS filter. It was necessary to average the coordinates where the maximum correlation was found. The average of these coordinates was considered to correspond to the position within the IRIS array where the images from both telescopes are aligned.
+
+%Finally, the last step of the alignment process was to identify the helioprojective coordinates corresponding to the pixel with the highest correlation. This step was critical in ensuring precise alignment and correlation between the images from both telescopes.
+
+\begin{comment}
+The process to estimate the pixel of maximum correlation between the IRIS and ALMA images was carried out in the following steps:
+
+\begin{enumerate}
+    \item The IRIS images were re-scaled taking as the scaling factor the ratio between the pixel sizes of IRIS and ALMA, such that observations from both telescopes ended up with the same pixel size.
+    \item
+    The IRIS frames co-observed alongside ALMA were specifically selected for alignment. Subsequently, both sets of images underwent an averaging and interpolation process to standardize their intensity scales, ensuring consistency between the IRIS and ALMA data. The resulting intensity scale ranges from 0 to +1.
+
+    This phase involves generating two synchronized images, depicting concurrent observations from IRIS and ALMA. These images will undergo correlation analysis in the subsequent step to facilitate alignment—an essential preparatory phase for the upcoming stages of the process.
+    %The IRIS frames that were co-observed with ALMA were selected. These images were then averaged and interpolated to bring them to the same intensity scale.
+    %This averaging and interpolation process was also applied to the ALMA data.
+    %The range of the intensity scale takes values from 0 to +1.
+%
+    %In this step, we create two images that represent the observations made by IRIS and ALMA in the same time window. These images will be analyzed for correlations in order to align them. This analysis will be carried out in the next step of the process.
+    
+    \item A correlation analysis was conducted between the IRIS and ALMA images obtained in the previous step. The IRIS image was mapped with the ALMA image. Given that the IRIS image has a wider FoV compared to that of ALMA, the mapping process focused on sequentially overlaying the ALMA image onto the IRIS image. This overlay was performed while ensuring that the ALMA image remained completely contained within the IRIS FoV at all times. The process resembled a comprehensive scan, with the ALMA image systematically shifted across the entire extent of the IRIS image. During each scan, the PCC and SSIM between the images were estimated and stored in a matrix whose dimensions matched those of the IRIS matrix
+    %Thus, the IRIS image was mapped with the ALMA image, in each mapping the PCC and the SSIM coefficient were estimated and stored in a matrix. 
+    \item
+    The position in coordinates of pixels in the averaged and interpolated IRIS matrix for which the maximum correlation between the IRIS images with ALMA was found, corresponds to the pixel in which both images are aligned for a given IRIS filter.
+    \item
+    The process described above was done for each IRIS filter, therefore it was necessary to average the coordinates where the maximum correlation was found. The average of the coordinates was considered to correspond to the position within the IRIS array where the images from both telescopes are aligned.
+    \item
+    The next step of the alignment process is to identify the helioprojective coordinates corresponding to the pixel with the highest correlation mentioned earlier.
+    %Now, \textbf{the helioprojective coordinates associated with the pixel where the aforementioned maximum correlation was found must be found. This was done in the fourth step of the alignment.}
+\end{enumerate}
+\end{comment}
+
+
+\begin{figure*}[htb!]
+   \centering
+    \includegraphics[width=\textwidth]{images/result_alingnment_with_iris_new_plot_dpi_100.jpg}
+    \caption{
+    Result of the alignment  ALMA Band 3, SDO,  and IRIS for region D06 of the \href{http://sdc.uio.no/salsa/}{SALSA} database, corresponding to the observation of April 12, 2018 at 12:15 UTC. The black circle represents the ALMA FoV, which is centered on the helioprojective coordinates $T_x,$ $ T_y$ = -134.21 -396.86, which were estimated during the alignment process. The regions of the chromosphere with a brightness temperature of  7500 K in the ALMA images are delimited by cyan contours.}
+    \label{chap_2:fig_result_IRIS_and_SDO_aling}
+\end{figure*}
+
+
+\subsection{Alignment of IRIS images with SDO}
+\label{Alignment_of_IRIS_images_with_SDO}
+
+The alignment process between the IRIS and SDO images, essential for ensuring that ALMA aligns with SDO through IRIS, involved several meticulous steps. Initially, the IRIS images were cropped, centering each frame on the pixel identified as having the maximum correlation with the ALMA images. This strategic alignment of IRIS with ALMA was crucial, as it ensured that, by aligning IRIS with SDO in subsequent steps, ALMA would also align with SDO by transitivity. Additionally, the cropping expanded the field of view by approximately 10 arcsec to enhance computational efficiency. 
+
+Due to IRIS's use of four different intensity filters, specific standardization steps were necessary for accurate comparison with SDO images. The IRIS data were normalized by their standard deviation, ensuring the filters with higher intensities contributed appropriately to the averaged data used in later stages.
+%The process of estimating the pixel and its helioprojective coordinates for which the IRIS and SDO images align followed a detailed process. Initially,  the IRIS frames were cropped by taking the pixel where the maximum correlation between the IRIS images with ALMA was found as the central pixel. This strategic alignment of each IRIS image with the corresponding ALMA images is crucial. This approach ensures that when aligning the IRIS images with SDO images later on, the ALMA images also become perfectly aligned with SDO by transitivity. The cropping was also designed to slightly expand the field of view, approximately by 10\,arcsec, to optimize code performance. For an accurate comparison between IRIS and SDO images, specific adjustments were considered due to IRIS having four different intensity filters. The IRIS data were standardized by their standard deviation, ensuring that images corresponding to filters with higher intensity had an appropriate influence on the resulting average that will be carried out in later stages of this process.
+
+The cropped IRIS images were rescaled using a scaling factor derived from the ratio between the pixel size in arcsec of IRIS and that of SDO (0.1663/0.6), ensuring both images had the same pixel size (0.6\,arcsec). During this process, the pixel dimensions of the cropped IRIS data, originally spanning a FoV of 38.25\,arcsec $\times$ 38.25\,arcsec, were adjusted. The dimensions transitioned from their original size of 230$\times$230\,pixels to a resized dimension of 160$\times$160\,pixels. This adjustment reflects the scaling changes required to achieve uniformity in both telescopic observations.
+
+Next, simultaneous observations of SDO images and cropped IRIS frames (across all four filters) with ALMA were selected. With uniform cadences and pixel sizes across the filters, an average of all IRIS filter images was computed to create a representative IRIS data cube. This IRIS cube was then aligned with the SDO images. Both data sets were averaged and interpolated to standardize intensity scales, facilitating the correlation analysis.
+
+The correlation analysis involved mapping the cropped IRIS images with the SDO images. As detailed in Section \ref{alma-IRIS_correlation_process}, for each mapping, the Pearson Correlation Coefficient (PCC) and the Structural Similarity Index (SSIM) were estimated and stored in a matrix corresponding to the dimensions of the SDO matrix.
+
+%In the next step, the SDO images and cropped IRIS frames, consisting of four filters, were selected and observed simultaneously with ALMA. Each filter had a uniform cadence and pixel size, allowing for an average to be taken across all filter images to obtain a representative data cube of the IRIS images. This representative IRIS data cube was then aligned with the SDO images. Both the representative IRIS cube and the SDO images were averaged and interpolated to standardize their intensity scales, resulting in the creation of two images. These aligned images were prepared for a correlation analysis.
+
+%A correlation analysis was then conducted between the cropped IRIS and SDO images obtained previously. The SDO image was mapped with the cropped IRIS image, and in each mapping, the PCC and the SSIM coefficient were estimated and stored in a matrix matching the dimensions of the SDO matrix. This mapping process is similar to the one described in Section \ref{alma-IRIS_correlation_process}.
+
+
+The process also involved determining the position in coordinates of pixels in the averaged and interpolated SDO matrix, where the maximum correlation between the IRIS images with SDO was found. This position corresponds to the pixel where both images are aligned for a given SDO filter. The helioprojective coordinates of the pixel where the maximum correlation was found between the IRIS and SDO images were estimated using the information in the SDO data headers. This step was repeated for each SDO filter, averaging the helioprojective coordinates of the pixels with the highest correlation, thereby aligning the IRIS images using SDO coordinates as a reference. Consequently, the IRIS images were aligned with the SDO images. By extension, as in the second step, IRIS's alignment with ALMA implied the alignment of ALMA images with SDO as well.
+%This process described above was carried out for each previously mentioned SDO filter, so it was necessary to average the helioprojective coordinates associated with the pixel where the maximum correlation was found, with this the IRIS images were aligned using the SDO coordinates as a reference.
+
+%Finally, the IRIS images were aligned with the SDO. Similar to the second step, the IRIS images were aligned with ALMA by transitivity, thus aligning the ALMA images with the SDO.
+
+To manage computational efficiency in this complex alignment process, we focused on optimizing the search for maximum correlations. The decision to crop SDO data to a FoV 1.8 times that of ALMA's Band 3 observations was made to limit the spatial range for potential correlations. In the initial step of Section \ref{Alignment_of_IRIS_images_with_SDO}, cropping the IRIS data created a FoV marginally larger than ALMA's. This approach served a dual purpose: it reduced the number of correlation calculations and ensured that the images to be aligned (IRIS and ALMA) were smaller in arcsecond dimensions compared to the SDO data, which acted as the reference in the alignment process.
+%Conducting an alignment process based on analyzing correlations among different images captured by telescopes can be computationally expensive. When attempting to align these images, it is necessary to limit the search range to the maximum correlations to prevent excessive computational costs. In the proposed method, parameter choices have been made to optimize the search for the maximum correlation. Specifically, the decision to crop the SDO data to achieve a FoV  1.8 times that of ALMA's Band 3 observations were made to narrow down the range of spatial positions where correlation can be found. 
+%Additionally, in the first step of section \ref{Alignment_of_IRIS_images_with_SDO}, the IRIS data was cropped to create a new FoV that is slightly larger than that of ALMA. This decision serves two purposes. Initially, it minimizes the quantity of correlation calculations, and secondly, it guarantees that the dimensions in arcseconds of the images to be aligned—specifically, IRIS and ALMA—are smaller compared to the dimensions in arcseconds of the SDO data, serving as the reference for the alignment process. 
+
+%first, it reduces the number of correlation calculations, and second, it ensures that the size in arcseconds of the images to be aligned, in this case, IRIS and ALMA, is smaller than the size in arcseconds of the SDO data with respect to which the alignment will be performed.
+ 
+The data acquisition and image alignment process was implemented in Python. The documentation of the programs used as well as the script used to align the images is available on GitHub \cite{gibhub_reporsitory_alignment} together with a guide for the use of the program.
+
+
+
+\begin{comment}
+    
+
+\begin{enumerate}
+    \item  
+    The IRIS frames were cropped taking the pixel where the maximum correlation between the IRIS images with ALMA was found as the central pixel, strategically aligning each IRIS image precisely with the corresponding ALMA images. This procedure ensures that when later aligning the IRIS images with SDO images, the ALMA images also become perfectly aligned with SDO by transitivity. Additionally, cropping was implemented to slightly expand the field of view, approximately by 10\,arcsec, with the purpose of optimizing code performance. To ensure an accurate comparison between IRIS and SDO images, specific adjustments were made, considering that IRIS has four different intensity filters. The IRIS data were standardized by their standard deviation, ensuring that images corresponding to filters with higher intensity had an appropriate influence on the resulting average that will be carried out in later stages of this process.
+    %The IRIS frames were cropped taking the pixel where the maximum correlation between the IRIS images with ALMA was found as the central pixel. The cropping was done in such a way that the new FoV of the IRIS images was slightly larger than the FoV of ALMA. Then, the cropped images were normalized by their standard deviation and then averaged. Thus, a single data cube was obtained, which will be aligned using the SDO as a reference.  
+    
+    \item  The cropped IRIS images were rescaled using a scaling factor derived from the ratio between the pixel size in arcsec of IRIS and that of SDO (0.1663/0.6), ensuring both images had the same pixel size (0.6\,arcsec). During this process, the pixel dimensions of the cropped IRIS data, originally spanning a FoV of 38.25\,arcsec $\times$ 38.25\,arcsec, were adjusted. The dimensions transitioned from their original size of 230$\times$230\,pixels to a resized dimension of 160$\times$160\,pixels. This adjustment reflects the scaling changes required to achieve uniformity in both telescopic observations.
+    
+    %The cropped IRIS images were re-scaled taking as a scaling factor the ratio of the pixel size in arcsec of IRIS with the pixel size of SDO so that both images had the same pixel size.
+
+    
+    \item  
+    %The cropped IRIS and SDO frames that has co-observed with ALMA were selected. These images were then averaged and interpolated to bring them to the same intensity scale. Thus, two images are obtained with which the correlation analysis will be made.
+
+    %The selected cropped IRIS and SDO frames, which are co-observed with ALMA, were selected. These images were subsequently averaged and interpolated to standardize their intensity scales, resulting in the creation of two images. These aligned images will undergo correlation analysis in the next step of the process.
+    The SDO images and cropped IRIS frames, consisting of four filters, were selected and observed simultaneously with ALMA. It is noteworthy that each filter has a uniform cadence and pixel size, allowing for an average to be taken across all filter images to obtain a representative data cube of the IRIS images. Subsequently, this representative IRIS data cube will be aligned with the SDO images. Following this, both the representative IRIS cube and the SDO images were averaged and interpolated to standardize their intensity scales, resulting in the creation of two images. These aligned images will undergo a correlation analysis in the next step of the process.
+    
+    \item 
+    The correlation analysis between the cropped IRIS and SDO images was performed. Thus, the SDO image was mapped with the cropped IRIS image, in each mapping the PCC and the SSIM coefficient were estimated and stored in a matrix whose dimensions matched those of the SDO matrix. This mapping process is analogous to the process described in Section \ref{alma-IRIS_correlation_process}.
+
+
+    \item The position in coordinates of pixels, in the averaged and interpolated SDO matrix for which the maximum correlation between the IRIS images with SDO was found, corresponds to the pixel in which both images are aligned for a given SDO filter. 
+    
+    \item
+    The helioprojective coordinates of the pixel where the maximum correlation was found between the IRIS and SDO images were estimated using the information available in the SDO data headers.
+    \item
+    The process described above was carried out for each previously mentioned SDO filter, so it was necessary to average the helioprojective coordinates associated with the pixel where the maximum correlation was found, with this the IRIS images were aligned using the SDO coordinates as a reference.
+    
+\end{enumerate}
+%\begin{itemize}
+%\item  \textbf{Alignment of ALMA images with IRIS:}
+%\item  \textbf{Alignment of IRIS images with SDO} 
+%\end{itemize}
+\end{comment}
+
+
+\begin{table*}[h]
+\centering
+\caption{Results of identifying the pixel with the maximum correlation between IRIS and ALMA images for region D06 from the \href{http://sdc.uio.no/salsa/}{SALSA} database, corresponding to the observation of April 12, 2018 at 12:15 UTC.}
+\begin{tabular}{ccccccc}
+\hline
+\hline
+\multicolumn{7}{c}{ALMA Alignment with IRIS}                                                                                      \\ \hline
+\multicolumn{1}{c|}{\multirow{2}{*}{IRIS  Filters(Å)}} & \multicolumn{3}{c|}{Pearson}                  & \multicolumn{3}{c}{SSIM} \\ \cline{2-7} 
+\multicolumn{1}{c|}{}                                  & pixel x & pixel y & \multicolumn{1}{c|}{r}    & pixel x & pixel y & r    \\ \hline
+\multicolumn{1}{c|}{1330.0}                            & 371.51  & 360.69  & \multicolumn{1}{c|}{0.72} & 371.51  & 362.49  & 0.26 \\
+\multicolumn{1}{c|}{1400.0}                            & 373.31  & 362.49  & \multicolumn{1}{c|}{0.56} & 373.31  & 362.49  & 0.14 \\
+\multicolumn{1}{c|}{2796.0}                            & 376.92  & 362.49  & \multicolumn{1}{c|}{0.52} & 375.11  & 369.70  & 0.15 \\
+\multicolumn{1}{c|}{2832.0}                            & 375.11  & 367.90  & \multicolumn{1}{c|}{0.08} & 472.50  & 449.05  & 0.03 \\
+\multicolumn{1}{c|}{Mean}                              & 374.21  & 363.39  & \multicolumn{1}{c|}{0.47} & 398.11  & 385.93  & 0.14 \\ \hline
+\end{tabular}
+\label{chap_2:result_IRIS_and_ALMA_align}
+\end{table*}
+
+
+\begin{table*}[h]
+\centering
+\caption{Results of the alignment of the IRIS images with the SDO images for region D06 from the \href{http://sdc.uio.no/salsa/}{SALSA} database, corresponding to the observation of April 12, 2018 at 12:15 UTC.}
+\begin{tabular}{ccccccc}
+\hline
+\hline
+\multicolumn{7}{c}{IRIS Alignment with the SDO}                                                                                                                  \\ \hline
+\multicolumn{1}{c|}{\multirow{2}{*}{SDO Filters(Å)}} & \multicolumn{3}{c|}{Pearson}                                                  & \multicolumn{3}{c}{SSIM} \\ \cline{2-7} 
+\multicolumn{1}{c|}{}                                & \multicolumn{1}{c}{Tx} & \multicolumn{1}{c}{Ty} & \multicolumn{1}{c|}{r}    & Tx      & Ty      & r    \\ \hline
+\multicolumn{1}{c|}{304}                             & -136.66                 & -398.02                 & \multicolumn{1}{c|}{0.46} & -137.21 & -398.02 & 0.09 \\
+\multicolumn{1}{c|}{HMI}                             & -134.21                 & -395.69                 & \multicolumn{1}{c|}{0.35} & -133.70 & -395.69 & 0.11 \\
+\multicolumn{1}{c|}{1600}                            & -133.16                 & -397.25                 & \multicolumn{1}{c|}{0.54} & -133.16 & -396.25 & 0.24 \\
+\multicolumn{1}{c|}{1700}                            & -133.12                 & -396.47                 & \multicolumn{1}{c|}{0.52} & -133.12 & -396.47 & 0.23 \\
+\multicolumn{1}{c|}{Mean}                             & -134.21                 & -396.86                 & \multicolumn{1}{c|}{0.47} & -134.30 & -396.61 & 0.17 \\ \hline
+\end{tabular}
+\label{chap_2:result_IRIS_and_SDO_align}
+\end{table*}
+
+
+\section{Results and analysis}
+
+
+The result of applying the process of finding maximum correlation pixels between the IRIS and ALMA images,  detailed in Section \ref{alma-IRIS_correlation_process}, is presented in Table \ref{chap_2:result_IRIS_and_ALMA_align}.
+This table displays the pixel coordinates (pixel x, pixel y) within the IRIS matrix where the maximum correlation has been found between ALMA data and each of the IRIS filters, using the SSIM and PCC methods. Additionally, the table includes the correlation value (r) obtained in the fit.
+
+%The result of applying the second part of the alignment process, called \textbf{Alignment of ALMA Images with IRIS} and described in section \ref{chap_2:seccion_2.3}, for the D06 region of the \href{http://sdc.uio.no/salsa/}{SALSA} database, is presented in Table \ref{chap_2:result_IRIS_and_ALMA_align}.    This table shows the pixel positions (pixel x, pixel y) within the IRIS matrix for which the maximum correlation was found between the ALMA data and each of the IRIS filters.
+
+
+In general, the pixel positions obtained by the PCC and SSIM methods present a percentage discrepancy of less than $2\%$, see Table \ref{chap_2:result_IRIS_and_ALMA_align}.
+However, in the particular case of the correlations between IRIS 2832\,Å images and ALMA images in the D06 dataset, the percentage discrepancy reaches about $26\%$. This discrepancy is due to the fact that IRIS 2832Å is observing the mid-high photosphere \cite{grubecka_height_2016}, while ALMA Band 3 in D06 is observing the mid-chromosphere \cite{wedemeyer_sun_2020_ALMA_band_3}. Therefore, the estimate of the SSIM index for this data set is unreliable. In contrast, the PCC is more reliable in this case because it focuses on estimating the linear correlation between the data, rather than comparing the brightness, contrast, and structure of two very different data sets as the SSIM method does.
+
+
+In a similar study, \cite{sim_vs_pcc_2020} explored the effectiveness of the SSIM and PCC methods as criteria for measuring image similarity. \cite{sim_vs_pcc_2020}'s findings revealed that the SSIM method is not capable of accurately determining image similarity, proving effective only in cases of highly visually similar images that belong to the same scene. This is particularly evident in the case of IRIS 2832\,Å, and ALMA in region D06, where, despite representing the same moment in time, the coupling between layers is weak, as illustrated in Figure \ref{chap_2:fig_result_IRIS_and_SDO_aling}. 
+However, it is possible that the SSIM method could perform better in active regions of the solar atmosphere, where layer coupling is stronger, especially when comparing images such as IRIS 2832\,Å and ALMA band 3.
+Furthermore, \cite{sim_vs_pcc_2020} concludes in his research that the PCC method emerges as a more reliable tool for measuring image similarity and, in terms of computational efficiency, is quicker.
+
+
+%Hence, the computational implementation of the alignment process detailed in section \ref{alma-IRIS_correlation_process}   was decided to estimate the correlations using the PCC statistic.  This method was chosen because the SSIM method is $40\%$ more computationally expensive. In addition, contrasting the average centers obtained by both methods, the difference between them induces variations of less than 1 arcsec in the final alignment result.
+
+
+Hence, it was decided that in the computational implementation of the alignment process outlined in Section \ref{alma-IRIS_correlation_process}, the PCC method would be employed to estimate the correlations between IRIS and ALMA. This choice was made because the SSIM method incurs a 40\% higher computational cost. Furthermore, when comparing the average centers obtained by both methods, excluding the correlation between IRIS 2832\,Å and ALMA band 3, the difference between them introduces variations of less than 1.0\,arcsec in the final alignment result.
+
+
+
+
+
+%Figure  \ref{chap_2:figure_result_IRIS_and_SDO_align} shows the result of the alignment of IRIS data with ALMA obtained in the \textbf{Alignment of ALMA Images with IRIS} step of section \ref{chap_2:seccion_2.3} for the D06 region of the \href{http://sdc.uio.no/salsa/}{SALSA} database. It shows the ALMA FoV represented by the blue circle in the upper left image, drawn over the IRIS 2796\,Å FoV.  The yellow and black contours represent regions of the chromosphere where the brightness temperature measured by ALMA is 7000 and 7500\,K.  The thermal structures bounded by the above contours are strongly observed in the IRIS data for filters 1330\,Å, 1400\,Å and 2796\,Å. In the IRIS 2832\,Å filter, the thermal structure is strongly influenced by the presence of convective cells in the photosphere, making it difficult to observe a correlation with the thermal structure in the chromosphere.
+
+
+%\ref{Alignment_of_IRIS_images_with_SDO}
+
+%Table \ref{chap_2:result_IRIS_and_SDO_align}  presents the results obtained in step three of the alignment process. 
+
+The Table \ref{chap_2:result_IRIS_and_SDO_align} presents the results obtained in the process of aligning IRIS images with SDO, as detailed in Section \ref{Alignment_of_IRIS_images_with_SDO}. It shows the helioprojective coordinates estimated for the average position with the highest correlation, identified in the second step of the alignment process. 
+In particular, it is observed that for the average position of maximum correlation (x,y) = (374.21, 363.39) obtained with the PCC statistic (see Table \ref{chap_2:result_IRIS_and_ALMA_align}), the average helioprojective coordinates are $T_x$ = -134.21 and $T_y$ = -396.86. Additionally, using the SSIM metric, the coordinates are found to be $T_x$ = -134.30 and $T_y$ = -396.61. The coordinates we have determined exhibit a percentage discrepancy of $4.5\%$ and $0.8\%$ for the $T_x$ and $T_y$ components, respectively, when compared to those reported by \cite{SALSA_guia}. 
+
+%In it is shows the helioprojective coordinates estimated for the average position of maximum correlation found in the second step of the alignment process, see Table \ref{chap_2:result_IRIS_and_ALMA_align}.
+
+
+%--------------------------------------------------------------%--------------------------------------------------------------%--------------------------------------------------------------
+
+%Using the helioprojective coordinates obtained through the proposed method, along with the SDO data headers, we created Figure \ref{chap_2:fig_result_IRIS_and_SDO_aling} to visually depict the result using the proposed method. In the figure, a black circle represents the ALMA FoV. The cyan contour corresponds to temperature, 7500K.
+Using the helioprojective coordinates obtained through the proposed alignment method, along with the headers from SDO and IRIS data, we created Figure \ref{chap_2:fig_result_IRIS_and_SDO_aling} to visually illustrate the alignment results. In the left and center columns, we present the SDO and IRIS observations, respectively, in the specified filters as indicated in the titles.  The black circle in these columns denotes the results obtained using the proposed alignment method. In the right column for each row, we display the ALMA data,  enabling a direct visual comparison of the method's effectiveness in terms of the similarity between ALMA's thermal structure and the images in the left and center columns. The cyan contour corresponds to temperature, 7500K.
+
+
+During program development, we conducted tests to assess direct alignment between ALMA images with SDO and IRIS images with SDO. In these tests,   the helioprojective coordinates obtained from both alignments differed by less than 0.5\%, approximately 2.0\,arcsec, which equated to a discrepancy of 6 pixels. This was also consistent with the results obtained using the method proposed in this study, where the discrepancy remained below 2.0\,arcsec. Our research revealed that the best results were achieved when aligning IRIS, ALMA, and SDO images using the method outlined in this study. Additionally, in the GitHub repository \cite{gibhub_reporsitory_alignment}, you can also find routines for aligning ALMA images with SDO and IRIS images with SDO.
+
+ 
+
+\section{Conclusions}
+The proposed alignment process, detailed in   Sections \ref{chap_2:seccion_2.3}, \ref{alma-IRIS_correlation_process}, and \ref{Alignment_of_IRIS_images_with_SDO},
+successfully aligns ALMA and IRIS images using the helioprojective coordinates from SDO as a reference point. The percentage discrepancy between the helioprotective coordinates $T_x$ and $T_y$ obtained in our methodology and those reported by \cite{SALSA_guia} in the ALMA database for the D06 was $4.5\%$ and $0.8\%$, respectively. It is worth noting that the coordinates given in SALSA correspond to a primary, non-systematic co-alignment carried out during the image reconstruction of the datasets. This success is clearly reflected in Figure \ref{chap_2:fig_result_IRIS_and_SDO_aling}, where a clear correlation is observed between the thermal structure of ALMA data and observations from SDO and IRIS in the corresponding filters.
+
+The alignment process employs both the PCC and the SSIM methods to estimate correlations between the datasets. PCC is chosen as the preferred method due to its reliability in cases of vastly different datasets and its significant computational advantages over SSIM. The results exhibit less than a 1 arcsec variation between the average centers determined by the two methods, ensuring consistency in the final alignment results.
+
+
+It is worth noting that the proposed method can also be used for aligning images from other telescopes. However, caution should be exercised when selecting the AIA filter to serve as a reference for alignment. The choice should ensure that the formation height of the emission line in the reference filter is close to the formation height of the data being aligned. This will ensure an effective and accurate correlation between the images, as the method relies on analyzing the correlation and similarity between them. It should be also relatively simple to adapt the method in the case that there were not co-observations with IRIS.
+
+In future research endeavors, this method could serve as a foundation for the development of an advanced alignment technique that takes into account the projection effect when aligning images. Such an approach could further enhance the precision of image alignment and contribute to a deeper understanding of the small-scale solar phenomena.
+
+\begin{comment}
+    \begin{figure*}[!htb]
+   \centering
+    \includegraphics[scale=0.37]{images/iris_data_analisis_scaled_2.jpg}
+    \caption{Result of the alignment between ALMA Band 3 and IRIS 2796Å for region D06 of the SALSA database, corresponding to the observation of April 12, 2018 at 12:15 UTC. 
+    Panels (a) through (d) show: IRIS 2796\,Å images with a pixel size of 0.1663 arcsec (a). IRIS 2796A images with a pixel size of 0.3 arcsec (b). The intensity distribution of the pixels corresponds to the regions enclosed in the black outline shown in the images shown in panels (a)-(b) (c). ALMA image for region D06 with a pixel size of 0.3 arcsec. The black outline corresponds to brightness temperatures 1.5 sigmas below the average.}
+    \label{chap_2:discussion_iris_mean}
+\end{figure*}
+
+\begin{figure*}[h]
+   \centering
+    \includegraphics[scale=0.37]{images/iris_data_analisis_mean_std.jpg}
+    \caption{The temporal evolution of the mean and standard deviation of pixels in IRIS filters IRIS 2832\,Å, IRIS 2796\,Å, IRIS 1400\,Å, and IRIS 1330\,Å  is shown for regions with low brightness temperature ("cold regions") observed in the D06 region of the SALSA database.  The blue curves correspond to estimates made with the usual IRIS pixel size, 0.1663 arcsec. Red curves correspond to estimates made with a pixel size of 0.3 arcsec, using rescaled IRIS images.}
+    \label{chap_2:iris_mean_std}
+\end{figure*}
+
+\end{comment}
+
+%=-------------------------------------------------------------------
+%=-------------------------------------------------------------------
+\section*{Acknowledgments}
+This paper makes use of the following ALMA data: ADS/JAO.ALMA\#2017.1.00653.S. ALMA is a partnership of ESO (representing its member states), NSF (USA), and NINS (Japan), together with NRC (Canada), MOST and ASIAA (Taiwan), and KASI (Republic of Korea), in co-operation with the Republic of Chile. The Joint ALMA Observatory is operated by ESO, AUI/NRAO, and NAOJ. SALSA, SALAT, and SoAP are produced and maintained by the SolarALMA project, which has received funding from the European Research Council (ERC) under the European Union's Horizon 2020 research and innovation programme (grant agreement No. 682462), and by the Research Council of Norway through its Centres of Excellence scheme, project number 262622.
+
+
+%=-------------------------------------------------------------------
+%=-------------------------------------------------------------------
+
+
+
+\bibliography{biblio}
+\end{document}
