@@ -322,8 +322,10 @@
   \begin{mdframed}[linewidth=0pt,linecolor=black!20, backgroundcolor=black!5, innerleftmargin=8pt,innerrightmargin=8pt,
   innertopmargin=10pt-8.2pt,innerbottommargin=6pt]
   {\fontsize{8.2pt}{10pt}\bfseries Key Points\par}
+  \end{mdframed}
 }{}{}
-\xpretocmd{\endkeypoints}{\end{mdframed}}{}{}
+
+\xapptocmd{\endkeypoints}{}{}{}
 
 \if@twocolumn
   \NewEnviron{frontmatter}
@@ -378,9 +380,9 @@
 
 
 % quotes and epigraphs
-\RequirePackage{quoting}
-\newcommand{\quotefont}{\fontsize{6.5pt}{9.5pt}\selectfont}
-\quotingsetup{vskip=16pt-1em,indentfirst=false,font={itshape,quotefont},leftmargin=12pt,rightmargin=12pt}
+%\RequirePackage{quoting}
+%\newcommand{\quotefont}{\fontsize{6.5pt}{9.5pt}\selectfont}
+%\quotingsetup{vskip=16pt-1em,indentfirst=false,font={itshape,quotefont},leftmargin=12pt,rightmargin=12pt}
 
 \renewenvironment{quote}{\begin{quoting}}{\end{quoting}}
 
